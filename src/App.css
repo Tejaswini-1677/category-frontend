@@ -1,0 +1,56 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  margin: 0;
+  justify-content: center;
+}
+
+.container {
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.form-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  margin: auto;
+  color: black;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+input, textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background: #4e73df;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  width: 200px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
