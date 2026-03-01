@@ -22,8 +22,7 @@ const ProductList = ({ products, onDelete }) => {
           <p>₹ {prod.price}</p>
           <p>Stock: {prod.inventoryCount}</p>
           <p>Category: {prod.category?.categoryName}</p>
-          
-
+          {/* Removed JSON display */}
           <button
             onClick={(e) => {
               e.stopPropagation();
