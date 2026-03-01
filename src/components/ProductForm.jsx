@@ -15,30 +15,35 @@ const ProductForm = ({ onSave }) => {
   }, []);
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!image) {
-    alert("Please select an image");
-    return;
-  }
+    if (!image) {
+      alert("Please select an image");
+      return;
+    }
 
-  const formData = new FormData();
-  formData.append("productName", productName);
-  formData.append("description", description);
-  formData.append("price", price);
-  formData.append("inventoryCount", inventoryCount);
-  formData.append("categoryId", categoryId);
-  formData.append("image", image);
+    // 🔹 Minimal fix: convert numeric fields before sending
+    const priceNumber = parseFloat(price) || 0;
+    const inventoryNumber = parseInt(inventoryCount) || 0;
+    const categoryNumber = parseInt(categoryId);
 
-  onSave(formData);
+    const formData = new FormData();
+    formData.append("productName", productName);
+    formData.append("description", description);
+    formData.append("price", priceNumber);             // use number
+    formData.append("inventoryCount", inventoryNumber); // use number
+    formData.append("categoryId", categoryNumber);     // use number
+    formData.append("image", image);
 
-  setProductName("");
-  setDescription("");
-  setPrice("");
-  setInventoryCount("");
-  setCategoryId("");
-  setImage(null);
-};
+    onSave(formData);
+
+    setProductName("");
+    setDescription("");
+    setPrice("");
+    setInventoryCount("");
+    setCategoryId("");
+    setImage(null);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="form-card">
@@ -98,5 +103,3 @@ const ProductForm = ({ onSave }) => {
 };
 
 export default ProductForm;
-
-
