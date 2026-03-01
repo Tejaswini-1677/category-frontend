@@ -4,7 +4,7 @@ import CategoryList from "./components/CategoryList";
 import { getCategories, createCategory, deleteCategory } from "./services/categoryService";
 import ProductForm from "./components/ProductForm";
 import ProductList from "./components/ProductList";
- import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import { getProducts, createProduct, deleteProduct } from "./services/productService";
 import "./App.css";
@@ -35,43 +35,48 @@ function App() {
     getProducts().then(res => setProducts(res.data));
   };
 
-  const handleProductSave = (data) => {
-    createProduct(data).then(loadProducts);
+  // ✅ Updated handleProductSave with error handling and refresh
+  const handleProductSave = (formData) => {
+    createProduct(formData)
+      .then(() => {
+        loadProducts(); // Refresh the product list immediately
+      })
+      .catch((err) => {
+        console.error("Failed to save product:", err);
+        alert("Failed to save product. Check console for details.");
+      });
   };
 
   const handleProductDelete = (id) => {
     deleteProduct(id).then(loadProducts);
   };
 
- 
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div className="container">
+            <h1>Category Management</h1>
+            <CategoryForm onSave={handleSave} />
+            <CategoryList
+              categories={categories.filter(c => c.status)}
+              onDelete={handleDelete}
+            />
 
-return (
-  <Routes>
+            <h1>Product Management</h1>
+            <ProductForm onSave={handleProductSave} />
+            <ProductList
+              products={products.filter(p => p.status)}
+              onDelete={handleProductDelete}
+            />
+          </div>
+        }
+      />
 
-    <Route path="/" element={
-      <div className="container">
-        <h1>Category Management</h1>
-        <CategoryForm onSave={handleSave} />
-        <CategoryList
-          categories={categories.filter(c => c.status)}
-          onDelete={handleDelete}
-        />
-
-        <h1>Product Management</h1>
-        <ProductForm onSave={handleProductSave} />
-        <ProductList
-          products={products.filter(p => p.status)}
-          onDelete={handleProductDelete}
-        />
-      </div>
-    } />
-
-    <Route path="/product/:id" element={<ProductDetails />} />
-
-  </Routes>
-);
-  
+      <Route path="/product/:id" element={<ProductDetails />} />
+    </Routes>
+  );
 }
 
 export default App;
-

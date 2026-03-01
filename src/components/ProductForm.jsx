@@ -15,25 +15,30 @@ const ProductForm = ({ onSave }) => {
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("productName", productName);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("inventoryCount", inventoryCount);
-    formData.append("categoryId", categoryId);
-    formData.append("image", image);
+  if (!image) {
+    alert("Please select an image");
+    return;
+  }
 
-    onSave(formData);
+  const formData = new FormData();
+  formData.append("productName", productName);
+  formData.append("description", description);
+  formData.append("price", price);
+  formData.append("inventoryCount", inventoryCount);
+  formData.append("categoryId", categoryId);
+  formData.append("image", image);
 
-    setProductName("");
-    setDescription("");
-    setPrice("");
-    setInventoryCount("");
-    setCategoryId("");
-    setImage(null);
-  };
+  onSave(formData);
+
+  setProductName("");
+  setDescription("");
+  setPrice("");
+  setInventoryCount("");
+  setCategoryId("");
+  setImage(null);
+};
 
   return (
     <form onSubmit={handleSubmit} className="form-card">
