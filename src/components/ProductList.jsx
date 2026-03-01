@@ -22,7 +22,7 @@ const ProductList = ({ products, onDelete }) => {
           <p>₹ {prod.price}</p>
           <p>Stock: {prod.inventoryCount}</p>
           <p>Category: {prod.category?.categoryName}</p>
-          <p>{JSON.stringify(prod)}</p>
+          
 
           <button
             onClick={(e) => {
