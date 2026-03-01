@@ -8,6 +8,7 @@ import { getProducts, createProduct, deleteProduct } from "./services/productSer
 import "./App.css";
 
 function App() {
+  console.log("New Deploy Test");
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -56,6 +57,7 @@ function App() {
 
 
   );
+  
 }
 
 export default App;
