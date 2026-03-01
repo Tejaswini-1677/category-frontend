@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getCategories } from "../services/categoryService";
 
 const ProductForm = ({ onSave }) => {
+  const [image, setImage] = useState(null);
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -16,19 +17,22 @@ const ProductForm = ({ onSave }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSave({
-      productName,
-      description,
-      price,
-      inventoryCount,
-      category: { categoryId }
-    });
+    const formData = new FormData();
+    formData.append("productName", productName);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("inventoryCount", inventoryCount);
+    formData.append("categoryId", categoryId);
+    formData.append("image", image);
+
+    onSave(formData);
 
     setProductName("");
     setDescription("");
     setPrice("");
     setInventoryCount("");
     setCategoryId("");
+    setImage(null);
   };
 
   return (
@@ -76,6 +80,12 @@ const ProductForm = ({ onSave }) => {
           </option>
         ))}
       </select>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}
+        required
+      />
 
       <button type="submit">Save</button>
     </form>
