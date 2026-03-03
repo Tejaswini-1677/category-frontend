@@ -7,6 +7,7 @@ import ProductList from "./components/ProductList";
 import { Routes, Route } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import { getProducts, createProduct, deleteProduct } from "./services/productService";
+import OrderDashboard from "./components/OrderDashboard";
 import "./App.css";
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
       />
 
       <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/orders" element={<OrderDashboard />} />
     </Routes>
   );
 }
