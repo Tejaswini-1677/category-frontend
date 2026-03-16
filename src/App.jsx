@@ -8,6 +8,11 @@ import { Routes, Route } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import { getProducts, createProduct, deleteProduct } from "./services/productService";
 import OrderDashboard from "./components/OrderDashboard";
+import CustomerHome from "./components/CustomerHome";
+import AuthPage from "./components/AuthPage";
+import CustomerList from "./components/CustomerList";
+import AddCustomer from "./components/AddCustomer";
+import UpdateCustomer from "./components/UpdateCustomer";
 import "./App.css";
 
 function App() {
@@ -53,6 +58,13 @@ function App() {
   };
 
   return (
+    <>
+    <div style={{padding:"10px", background:"#eee"}}>
+  <a href="/">Home</a> | 
+  <a href="/orders"> Orders</a> | 
+  <a href="/customers"> Customers</a> | 
+  <a href="/auth"> Login/Register</a>
+</div>
     <Routes>
       <Route
         path="/"
@@ -74,11 +86,18 @@ function App() {
           </div>
         }
       />
-
+ <Route path="/auth" element={<AuthPage />} />
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/orders" element={<OrderDashboard />} />
+     
+      <Route path="/customers" element={<CustomerList />} />
+      <Route path="/shop" element={<CustomerHome/>} />
+<Route path="/add-customer" element={<AddCustomer />} />
+<Route path="/update-customer/:id" element={<UpdateCustomer />} />
     </Routes>
+    </>
   );
+  
 }
 
 export default App;

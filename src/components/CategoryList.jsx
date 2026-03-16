@@ -1,4 +1,10 @@
+
 const CategoryList = ({ categories, onDelete }) => {
+  //const user = JSON.parse(localStorage.getItem("user"));
+
+//if(user?.role !== "ADMIN"){
+ // return <h2>Access Denied</h2>
+//}
   return (
     <div className="grid">
       {categories.map((cat) => (
