@@ -13,6 +13,8 @@ import AuthPage from "./components/AuthPage";
 import CustomerList from "./components/CustomerList";
 import AddCustomer from "./components/AddCustomer";
 import UpdateCustomer from "./components/UpdateCustomer";
+import AddPayment from "./components/AddPayment";
+import PaymentList from "./components/PaymentList";
 import "./App.css";
 
 function App() {
@@ -90,11 +92,13 @@ function App() {
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/orders" element={<OrderDashboard />} />
      
-      <Route path="/customers" element={<CustomerList />} />
-      <Route path="/shop" element={<CustomerHome/>} />
-<Route path="/add-customer" element={<AddCustomer />} />
-<Route path="/update-customer/:id" element={<UpdateCustomer />} />
-    </Routes>
+        <Route path="/customers" element={<CustomerList />} />
+        <Route path="/shop" element={<CustomerHome />} />
+        <Route path="/add-customer" element={<AddCustomer />} />
+        <Route path="/update-customer/:id" element={<UpdateCustomer />} />
+        <Route path="/payments" element={<PaymentList />} />
+        <Route path="/add-payment" element={<AddPayment />} />
+      </Routes>
     </>
   );
   
