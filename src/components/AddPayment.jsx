@@ -19,9 +19,26 @@ const AddPayment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createPayment(payment).then(() => {
-      alert("Payment Successful");
-    });
+    // 🔥 FIX: convert to backend format
+    const payload = {
+      order: {
+        id: Number(payment.orderId)
+      },
+      amount: Number(payment.amount),
+      paymentMethod: payment.paymentMethod
+    };
+
+    console.log("Sending:", payload);
+
+    createPayment(payload)
+      .then((res) => {
+        console.log("Response:", res.data);
+        alert("Payment Successful");
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        alert("Payment Failed");
+      });
   };
 
   return (
@@ -29,14 +46,32 @@ const AddPayment = () => {
       <h3>Add Payment</h3>
 
       <form onSubmit={handleSubmit}>
-        <input name="orderId" placeholder="Order ID" onChange={handleChange} />
-        <input name="amount" placeholder="Amount" onChange={handleChange} />
+        
+        <input
+          name="orderId"
+          type="number"
+          placeholder="Order ID"
+          onChange={handleChange}
+          required
+        />
 
-        <select name="paymentMethod" onChange={handleChange}>
-          <option>SELECT</option>
-          <option>CARD</option>
-          <option>UPI</option>
-          <option>PAYPAL</option>
+        <input
+          name="amount"
+          type="number"
+          placeholder="Amount"
+          onChange={handleChange}
+          required
+        />
+
+        <select
+          name="paymentMethod"
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Method</option>
+          <option value="CARD">CARD</option>
+          <option value="UPI">UPI</option>
+          <option value="PAYPAL">PAYPAL</option>
         </select>
 
         <button type="submit">Pay</button>
