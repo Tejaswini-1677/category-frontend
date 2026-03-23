@@ -16,6 +16,7 @@ import UpdateCustomer from "./components/UpdateCustomer";
 import AddPayment from "./components/AddPayment";
 import PaymentList from "./components/PaymentList";
 import Cart from "./components/Cart";
+import Wishlist from "./components/Wishlist";
 import "./App.css";
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
   <a href="/payments"> Payments</a> |   {/* ✅ ADD THIS */}
   <a href="/add-payment"> Add Payment</a> |
   <a href="/cart"> Cart</a> |
+  <a href="/wishlist"> Wishlist</a> |
   <a href="/auth"> Login/Register</a>
 </div>
     <Routes>
@@ -102,6 +104,7 @@ function App() {
         <Route path="/update-customer/:id" element={<UpdateCustomer />} />
         <Route path="/payments" element={<PaymentList />} />
         <Route path="/add-payment" element={<AddPayment />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
