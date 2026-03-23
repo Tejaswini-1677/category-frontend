@@ -65,6 +65,8 @@ function App() {
   <a href="/">Home</a> | 
   <a href="/orders"> Orders</a> | 
   <a href="/customers"> Customers</a> | 
+  <a href="/payments"> Payments</a> |   {/* ✅ ADD THIS */}
+  <a href="/add-payment"> Add Payment</a> |
   <a href="/auth"> Login/Register</a>
 </div>
     <Routes>
