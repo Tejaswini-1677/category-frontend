@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { addToWishlist } from "../services/wishlistService";
+import { addToWishlist } from "../services/wishlistService"; // ✅ added
 
 const ProductList = ({ products, onDelete }) => {
   const navigate = useNavigate();
 
-const handleWishlist = (productId) => {
-  addToWishlist({
-    customerId: 1,
-    productId: productId
-  })
-    .then(() => alert("Added to Wishlist ❤️"))
-    .catch(err => console.error(err));
-};
+  const handleWishlist = (productId) => {
+    addToWishlist({
+      customerId: 1,
+      productId: productId
+    })
+      .then(() => alert("Added to Wishlist ❤️"))
+      .catch(err => console.error(err));
+  };
 
   return (
     <div className="grid">
@@ -32,7 +32,7 @@ const handleWishlist = (productId) => {
           <p>₹ {prod.price}</p>
           <p>Stock: {prod.inventoryCount}</p>
           <p>Category: {prod.category?.categoryName}</p>
-          {/* Removed JSON display */}
+
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -41,9 +41,11 @@ const handleWishlist = (productId) => {
           >
             Deactivate
           </button>
+
+          {/* ✅ NEW BUTTON */}
           <button
             onClick={(e) => {
-              e.stopPropagation(); // VERY IMPORTANT (prevents navigation)
+              e.stopPropagation();
               handleWishlist(prod.productId);
             }}
           >
