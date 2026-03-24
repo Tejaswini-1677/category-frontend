@@ -17,6 +17,9 @@ import AddPayment from "./components/AddPayment";
 import PaymentList from "./components/PaymentList";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
+import Shipping from "./components/Shipping";
+import Review from "./components/Review";
+import Coupon from "./components/Coupon";
 import "./App.css";
 
 function App() {
@@ -63,41 +66,44 @@ function App() {
 
   return (
     <>
-    <div style={{padding:"10px", background:"#eee"}}>
-  <a href="/">Home</a> | 
-  <a href="/orders"> Orders</a> | 
-  <a href="/customers"> Customers</a> | 
-  <a href="/payments"> Payments</a> |   {/* ✅ ADD THIS */}
-  <a href="/add-payment"> Add Payment</a> |
-  <a href="/cart"> Cart</a> |
-  <a href="/wishlist"> Wishlist</a> |
-  <a href="/auth"> Login/Register</a>
-</div>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div className="container">
-            <h1>Category Management</h1>
-            <CategoryForm onSave={handleSave} />
-            <CategoryList
-              categories={categories.filter(c => c.status)}
-              onDelete={handleDelete}
-            />
+      <div style={{ padding: "10px", background: "#eee" }}>
+        <a href="/">Home</a> |
+        <a href="/orders"> Orders</a> |
+        <a href="/customers"> Customers</a> |
+        <a href="/payments"> Payments</a> |   {/* ✅ ADD THIS */}
+        <a href="/add-payment"> Add Payment</a> |
+        <a href="/cart"> Cart</a> |
+        <a href="/wishlist"> Wishlist</a> |
+        <a href="/shipping"> Shipping</a> |
+        <a href="/reviews"> Reviews</a> |
+        <a href="/coupons"> Coupons</a> |
+        <a href="/auth"> Login/Register</a>
+      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="container">
+              <h1>Category Management</h1>
+              <CategoryForm onSave={handleSave} />
+              <CategoryList
+                categories={categories.filter(c => c.status)}
+                onDelete={handleDelete}
+              />
 
-            <h1>Product Management</h1>
-            <ProductForm onSave={handleProductSave} />
-            <ProductList
-              products={products.filter(p => p.status)}
-              onDelete={handleProductDelete}
-            />
-          </div>
-        }
-      />
- <Route path="/auth" element={<AuthPage />} />
-      <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/orders" element={<OrderDashboard />} />
-     
+              <h1>Product Management</h1>
+              <ProductForm onSave={handleProductSave} />
+              <ProductList
+                products={products.filter(p => p.status)}
+                onDelete={handleProductDelete}
+              />
+            </div>
+          }
+        />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/orders" element={<OrderDashboard />} />
+
         <Route path="/customers" element={<CustomerList />} />
         <Route path="/shop" element={<CustomerHome />} />
         <Route path="/add-customer" element={<AddCustomer />} />
@@ -106,10 +112,13 @@ function App() {
         <Route path="/add-payment" element={<AddPayment />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/reviews" element={<Review />} />
+        <Route path="/coupons" element={<Coupon />} />
       </Routes>
     </>
   );
-  
+
 }
 
 export default App;
